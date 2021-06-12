@@ -1,0 +1,28 @@
+{
+  "name": "terapeuticadigital",
+  "version": "1.0.0",
+  "description": "Proyecto final de conceptos avanzados de automatizacion de pruebas.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx wdio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/respinozah/terapeuticadigital.git"
+  },
+  "author": "Raul Espinoza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/respinozah/terapeuticadigital/issues"
+  },
+  "homepage": "https://github.com/respinozah/terapeuticadigital#readme",
+  "devDependencies": {
+    "@wdio/cli": "^7.7.3",
+    "@wdio/dot-reporter": "^7.7.3",
+    "@wdio/local-runner": "^7.7.3",
+    "@wdio/mocha-framework": "^7.7.3",
+    "@wdio/spec-reporter": "^7.7.3",
+    "chromedriver": "^91.0.0",
+    "wdio-chromedriver-service": "^7.1.0"
+  }
+}

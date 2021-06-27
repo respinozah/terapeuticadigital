@@ -1,26 +1,33 @@
-const HomePage = require('../pageobjects/home.page.js');
+const homePage = require('../pageobjects/home.page.js');
+const resultsPage = require('../pageobjects/results.page.js');
 
 
-describe('1-Home Page', () => {
+describe('1- Pruebas en el Home Page', () => {
+    beforeEach(async ()=> {
+        await homePage.open();
+    })
+
     it('1.a - Busqueda sin criterio no redirecciona a otra pagina', async () => {
-        await HomePage.open();
-        await HomePage.buscar('');
-        await expect(HomePage.homeText).toBeDisplayed();
+        await homePage.buscar('');
+        await expect(homePage.homeText).toBeDisplayed();
     });
 
     it('1.b - Campo de texto de busqueda obtiene el focus cuando se hace click en una especialidad', async () => {
-        await HomePage.open();
-        
-        await HomePage.selecccionarEspecialidadFisica();
-        await expect(HomePage.inputBuscar).toHaveAttribute('placeholder', '¿Buscas a alguien o algo en específico?');
-        await HomePage.removeSearchingOverlay();
+        await homePage.selecccionarEspecialidadFisica();
+        await expect(homePage.inputBuscar).toHaveAttribute('placeholder', '¿Buscas a alguien o algo en específico?');
+        await homePage.removerSearchingOverlay();
 
-        await HomePage.selecccionarEspecialidadLenguaje();
-        await expect(HomePage.inputBuscar).toHaveAttribute('placeholder', '¿Buscas a alguien o algo en específico?');
-        await HomePage.removeSearchingOverlay();
+        await homePage.selecccionarEspecialidadLenguaje();
+        await expect(homePage.inputBuscar).toHaveAttribute('placeholder', '¿Buscas a alguien o algo en específico?');
+        await homePage.removerSearchingOverlay();
         
-        await HomePage.selecccionarEspecialidadOcupacional();
-        await expect(HomePage.inputBuscar).toHaveAttribute('placeholder', '¿Buscas a alguien o algo en específico?');
-        await HomePage.removeSearchingOverlay();
+        await homePage.selecccionarEspecialidadOcupacional();
+        await expect(homePage.inputBuscar).toHaveAttribute('placeholder', '¿Buscas a alguien o algo en específico?');
+        await homePage.removerSearchingOverlay();
+    });
+
+    it('1.c - Realizar busqueda y validar resultado acorde al criterio de busqueda', async () =>{
+        await homePage.buscar("Maria");
+        await expect(await resultsPage.divPrimerResultadosBusqueda).toBeDisplayed();
     });
 });

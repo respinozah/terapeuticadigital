@@ -20,7 +20,7 @@ class HomePage {
         return await((await this.inputBuscar).getAttribute("placeholder"));
     }
 
-    async removeSearchingOverlay(){
+    async removerSearchingOverlay(){
         return await(await this.searchingOverlay).click();
     }
 

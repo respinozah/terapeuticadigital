@@ -27,6 +27,17 @@ describe('2- Pruebas en el Result Page', () => {
         const criterioBusqueda = "María";
 
         await homePage.buscar(simplificarTexto(criterioBusqueda));
+        await resultsPage.buscar(simplificarTexto(criterioBusqueda));
+        await expect(await resultsPage.getNombrePrimerResultadosBusqueda(criterioBusqueda)).toBeDisplayed();
+    });
+
+    it('2.C - Validar que al cambiar entre mapa y lista, el mapa desaparece', async () => {
+        const criterioBusqueda = "María";
+        await homePage.buscar(simplificarTexto(criterioBusqueda));
+
+        await expect(await resultsPage.mapaDesplegado).toBeDisplayed();
+        await resultsPage.cambiarResultadosLayout();
+        await expect(await resultsPage.mapaNoDesplegado).toExist();
     });
 });
 

@@ -2,37 +2,31 @@ const homePage = require('../pageobjects/home.page.js');
 const resultsPage = require('../pageobjects/results.page.js');
 
 
-
-
-describe('1- Pruebas en el Home Page', () => {
+describe('2- Pruebas en el Result Page', () => {
     beforeEach(async ()=> {
         await homePage.open();
     })
 
-    it('1.a - Busqueda sin criterio no redirecciona a otra pagina', async () => {
-        await homePage.buscar('');
-        await expect(homePage.homeText).toBeDisplayed();
-    });
-
-    it('1.b - Campo de texto de busqueda obtiene el focus cuando se hace click en una especialidad', async () => {
-        const expectedPlaceholder = '¿Buscas a alguien o algo en específico?';
-        await homePage.selecccionarEspecialidadFisica();
-        await expect(homePage.inputBuscar).toHaveAttribute('placeholder', expectedPlaceholder);
-        await homePage.removerSearchingOverlay();
-
-        await homePage.selecccionarEspecialidadLenguaje();
-        await expect(homePage.inputBuscar).toHaveAttribute('placeholder', expectedPlaceholder);
-        await homePage.removerSearchingOverlay();
-        
-        await homePage.selecccionarEspecialidadOcupacional();
-        await expect(homePage.inputBuscar).toHaveAttribute('placeholder', expectedPlaceholder);
-        await homePage.removerSearchingOverlay();
-    });
-
-    it('1.c - Realizar busqueda y validar resultado acorde al criterio de busqueda', async () =>{
+    it('2.a - Cambio en especialidad en resultado de busqueda cambia la URL', async () => {
         const criterioBusqueda = "María";
+
         await homePage.buscar(simplificarTexto(criterioBusqueda));
-        await expect(await resultsPage.getNombrePrimerResultadosBusqueda(criterioBusqueda)).toBeDisplayed();
+        await expect(resultsPage.titleFiltros).toBeDisplayed();
+
+        await resultsPage.selecccionarEspecialidadFisica();
+        await expect(await browser).toHaveUrlContaining("search?sp=phisical");
+
+        await resultsPage.selecccionarEspecialidadLenguaje();
+        await expect(await browser).toHaveUrlContaining("search?sp=language");
+
+        await resultsPage.selecccionarEspecialidadOcupacional();
+        await expect(await browser).toHaveUrlContaining("search?sp=ocupational");
+    });
+
+    it('2.b - Realizar una busqueda desde la pagina de resultados y validar resultado acorde al criterio de busqueda', async () => {
+        const criterioBusqueda = "María";
+
+        await homePage.buscar(simplificarTexto(criterioBusqueda));
     });
 });
 

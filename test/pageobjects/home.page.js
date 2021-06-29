@@ -1,8 +1,5 @@
-
 class HomePage {
-    /**
-     * define selectors using getter methods
-     */
+
     get submitBuscar () { return $('//*[@type="submit" and @value="Buscar"]') }
     get inputBuscar () { return $('//*[@id="search-input"]') }
     get homeText () { return $('//p[contains(text()," Encuentra los mejores profesionales en terapia de ")]') }

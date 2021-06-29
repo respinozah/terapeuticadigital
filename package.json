@@ -23,6 +23,10 @@
     "@wdio/mocha-framework": "^7.7.3",
     "@wdio/spec-reporter": "^7.7.3",
     "chromedriver": "^91.0.0",
-    "wdio-chromedriver-service": "^7.1.0"
+    "wdio-chromedriver-service": "^7.1.0",
+    "wdio-intercept-service": "^4.1.6"
+  },
+  "dependencies": {
+    "@wdio/devtools-service": "^7.7.4"
   }
 }

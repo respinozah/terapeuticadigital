@@ -31,7 +31,7 @@ describe('2- Pruebas en el Result Page', () => {
         await expect(await resultsPage.getNombrePrimerResultadosBusqueda(criterioBusqueda)).toBeDisplayed();
     });
 
-    it('2.C - Validar que al cambiar entre mapa y lista, el mapa desaparece', async () => {
+    it('2.c - Validar que al cambiar entre mapa y lista, el mapa desaparece', async () => {
         const criterioBusqueda = "María";
         await homePage.buscar(simplificarTexto(criterioBusqueda));
 

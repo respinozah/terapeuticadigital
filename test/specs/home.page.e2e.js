@@ -1,9 +1,6 @@
 const homePage = require('../pageobjects/home.page.js');
 const resultsPage = require('../pageobjects/results.page.js');
 
-
-
-
 describe('1- Pruebas en el Home Page', () => {
     beforeEach(async ()=> {
         await homePage.open();
@@ -16,16 +13,20 @@ describe('1- Pruebas en el Home Page', () => {
 
     it('1.b - Campo de texto de busqueda obtiene el focus cuando se hace click en una especialidad', async () => {
         const expectedPlaceholder = '¿Buscas a alguien o algo en específico?';
+
         await homePage.selecccionarEspecialidadFisica();
         await expect(homePage.inputBuscar).toHaveAttribute('placeholder', expectedPlaceholder);
+        await expect(homePage.inputBuscar).toBeFocused();
         await homePage.removerSearchingOverlay();
 
         await homePage.selecccionarEspecialidadLenguaje();
         await expect(homePage.inputBuscar).toHaveAttribute('placeholder', expectedPlaceholder);
+        await expect(homePage.inputBuscar).toBeFocused();
         await homePage.removerSearchingOverlay();
         
         await homePage.selecccionarEspecialidadOcupacional();
         await expect(homePage.inputBuscar).toHaveAttribute('placeholder', expectedPlaceholder);
+        await expect(homePage.inputBuscar).toBeFocused();
         await homePage.removerSearchingOverlay();
     });
 

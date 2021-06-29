@@ -33,8 +33,8 @@ describe('2- Pruebas en el Result Page', () => {
 
     it('2.c - Validar que al cambiar entre mapa y lista, el mapa desaparece', async () => {
         const criterioBusqueda = "María";
+        
         await homePage.buscar(simplificarTexto(criterioBusqueda));
-
         await expect(await resultsPage.mapaDesplegado).toBeDisplayed();
         await resultsPage.cambiarResultadosLayout();
         await expect(await resultsPage.mapaNoDesplegado).toExist();

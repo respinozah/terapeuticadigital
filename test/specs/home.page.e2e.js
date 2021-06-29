@@ -2,7 +2,7 @@ const homePage = require('../pageobjects/home.page.js');
 const resultsPage = require('../pageobjects/results.page.js');
 
 describe('1- Pruebas en el Home Page', () => {
-    beforeEach(async ()=> {
+    before(async ()=> {
         await homePage.open();
     })
 

@@ -1,16 +1,15 @@
 const homePage = require('../pageobjects/home.page.js');
 const resultsPage = require('../pageobjects/results.page.js');
-
+let criterioBusqueda = "";
 
 describe('2- Pruebas en el Result Page', () => {
-    beforeEach(async ()=> {
+    before(async ()=> {
+        criterioBusqueda = "María";
         await homePage.open();
+        await homePage.buscar(simplificarTexto(criterioBusqueda));
     })
 
     it('2.a - Cambio en especialidad en resultado de busqueda cambia la URL', async () => {
-        const criterioBusqueda = "María";
-
-        await homePage.buscar(simplificarTexto(criterioBusqueda));
         await expect(resultsPage.titleFiltros).toBeDisplayed();
 
         await resultsPage.selecccionarEspecialidadFisica();
@@ -24,17 +23,11 @@ describe('2- Pruebas en el Result Page', () => {
     });
 
     it('2.b - Realizar una busqueda desde la pagina de resultados y validar resultado acorde al criterio de busqueda', async () => {
-        const criterioBusqueda = "María";
-
-        await homePage.buscar(simplificarTexto(criterioBusqueda));
         await resultsPage.buscar(simplificarTexto(criterioBusqueda));
         await expect(await resultsPage.getNombrePrimerResultadosBusqueda(criterioBusqueda)).toBeDisplayed();
     });
 
     it('2.c - Validar que al cambiar entre mapa y lista, el mapa desaparece', async () => {
-        const criterioBusqueda = "María";
-        
-        await homePage.buscar(simplificarTexto(criterioBusqueda));
         await expect(await resultsPage.mapaDesplegado).toBeDisplayed();
         await resultsPage.cambiarResultadosLayout();
         await expect(await resultsPage.mapaNoDesplegado).toExist();
